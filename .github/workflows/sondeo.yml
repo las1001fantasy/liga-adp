@@ -1,0 +1,9 @@
+# Temporal: sondeo de la página de jugadores de Fleaflicker. Se borrará.
+name: Sondeo Fleaflicker
+on: workflow_dispatch
+jobs:
+  sondeo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/sondeo_fleaflicker.py
