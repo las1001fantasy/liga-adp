@@ -16,7 +16,7 @@ window.LIGA_CONFIG = {
 
   // Equipos inscritos y puntos por jugador y semana (ver README para el formato).
   // URL del servidor de Apps Script (termina en /exec). Vacío = sin contraseñas, equipos en data/equipos.json
-  servidor: "",
+  servidor: "https://script.google.com/macros/s/AKfycbzCo4P7JoHJ5GeuWc-rAgllOayK6g9qqMxiIVXK5nZYuSjyIthPpWeghz4E8FqT2Tag/exec",
   archivoEquipos: "data/equipos.json",
   archivoPuntos: "data/puntos.csv",
   // Lista cerrada de managers (equipo del año pasado + nick de Telegram + grupo).
