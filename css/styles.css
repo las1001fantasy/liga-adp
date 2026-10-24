@@ -65,7 +65,15 @@ button, input, select { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 
 /* Cabecera marcador */
-.scoreboard { background: var(--board); color: var(--board-ink); }
+.scoreboard {
+  color: var(--board-ink);
+  background:
+    linear-gradient(90deg, rgba(120, 45, 0, .9) 0%, rgba(140, 54, 0, .72) 50%, rgba(120, 45, 0, .55) 100%),
+    url("../img/banner-peras-manzanas.jpg") center 40% / cover no-repeat,
+    var(--board);
+}
+.scoreboard .brand, .scoreboard .clock-label { text-shadow: 0 1px 3px rgba(0,0,0,.55); }
+.scoreboard .clock div { background: rgba(60, 20, 0, .6); backdrop-filter: blur(2px); }
 .scoreboard .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
 .brand { display: flex; align-items: center; gap: 14px; min-width: 0; color: inherit; text-decoration: none; }
 .brand img { width: 68px; height: auto; flex: none; filter: drop-shadow(0 2px 4px rgba(0,0,0,.25)); }
@@ -183,7 +191,7 @@ details summary { cursor: pointer; font-weight: 600; }
 .lineup.bench .slot { color: var(--muted); }
 
 /* Menú de secciones */
-.menu { background: var(--board-chip); }
+.menu { background: linear-gradient(var(--board-chip), var(--board-chip)), var(--board); }
 .menu .wrap { display: flex; gap: 4px; overflow-x: auto; padding-block: 0; }
 .menu a { color: var(--board-ink); text-decoration: none; font-weight: 600; font-size: 14px; padding: 10px 12px; white-space: nowrap; border-bottom: 3px solid transparent; }
 .menu a:hover { border-bottom-color: rgba(255,255,255,.5); }
