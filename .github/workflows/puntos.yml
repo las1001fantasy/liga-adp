@@ -6,6 +6,15 @@ on:
   schedule:
     - cron: "0 12 * * 2"
   workflow_dispatch:
+    inputs:
+      semanas:
+        description: "Semanas a calcular (p. ej. 9-17). Vacío = las ya terminadas de la 9 a la 17"
+        required: false
+        default: ""
+      guardar:
+        description: "Guardar el resultado en el repositorio (desmarcar para solo probar)"
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -18,10 +27,20 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python3 tools/actualizar_puntos.py
+      - name: Calcular puntos
+        run: |
+          if [ -n "${{ inputs.semanas }}" ]; then
+            python3 tools/actualizar_puntos.py --semanas "${{ inputs.semanas }}" --todas
+          else
+            python3 tools/actualizar_puntos.py
+          fi
+          cat data/puntos_log.txt 2>/dev/null || true
+          head -40 data/puntos.csv
       - name: Guardar cambios
+        if: github.event_name == 'schedule' || inputs.guardar
         run: |
           git config user.name "liga-adp-bot"
           git config user.email "liga-adp-bot@users.noreply.github.com"
-          git add data/puntos.csv data/puntos_log.txt
+          git add data/puntos.csv
+          [ -f data/puntos_log.txt ] && git add data/puntos_log.txt
           git diff --cached --quiet || (git commit -m "Puntos actualizados $(date -u +%F)" && git push)
