@@ -20,7 +20,7 @@ js/liga.js          Lógica de la liga: best ball semanal, clasificación, playo
 js/adp.js           Lectura del CSV/JSON de ADP
 js/app.js, inicio.js, equipos.js, jornada.js, playoffs.js   Una por página
 data/adp.csv        ADP REAL 2026 (de APD2026.xlsx, 240 jugadores)
-data/managers.json  Los 23 equipos de 2025 + nick de Telegram, y la plaza 24 libre ("libre": true)
+data/managers.json  Los 24 equipos (23 de 2025 + Nauer Ravens) con su nick de Telegram
 data/equipos.json   Equipos inscritos si no hay servidor (vacío)
 data/puntos.csv     Puntos por jugador y semana (lo rellena tools/actualizar_puntos.py)
 data/puntuacion.json Reglas de puntuación para el script de puntos
