@@ -46,6 +46,8 @@ window.LIGA_CONFIG = {
   // Semanas de la fase regular (9 a 14, ambas incluidas).
   semanaInicio: 9,
   semanaFin: 14,
+  // Jornada de ensayo: se puntúa y se ve en "Jornada", pero no cuenta para la general ni los playoffs.
+  semanaPrueba: 8,
 
   // Cierre de equipos: miércoles 4 de noviembre de 2026 a las 22:00 (hora de Barcelona).
   fechaLimite: "2026-11-04T22:00:00+01:00",

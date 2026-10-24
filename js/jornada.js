@@ -6,12 +6,19 @@
   var $ = function (id) { return document.getElementById(id); };
   var ctx = null, semana = null, abiertos = {};
 
-  function pintarSemanas(jugadas) {
-    var html = "";
-    for (var s = cfg.semanaInicio; s <= cfg.semanaFin; s++) {
-      var ok = jugadas.indexOf(s) >= 0;
-      html += '<button type="button" data-s="' + s + '" aria-pressed="' + (s === semana) + '"' + (ok ? "" : " disabled") + ">J" + s + "</button>";
-    }
+  // Semanas con botón: la de prueba (si hay) y las de la fase regular.
+  function semanasBoton() {
+    var l = cfg.semanaPrueba ? [cfg.semanaPrueba] : [];
+    for (var s = cfg.semanaInicio; s <= cfg.semanaFin; s++) l.push(s);
+    return l;
+  }
+  function conPuntos(s) { return !!ctx.puntos[s]; }
+
+  function pintarSemanas() {
+    var html = semanasBoton().map(function (s) {
+      return '<button type="button" data-s="' + s + '" aria-pressed="' + (s === semana) + '"' + (conPuntos(s) ? "" : " disabled") + ">J" + s +
+        (s === cfg.semanaPrueba ? " · prueba" : "") + "</button>";
+    }).join("");
     $("j-semanas").innerHTML = html;
   }
 
@@ -24,7 +31,7 @@
   }
 
   function pintarJornada() {
-    $("j-num").textContent = semana || "–";
+    $("j-num").textContent = semana ? semana + (semana === cfg.semanaPrueba ? " (prueba, no cuenta para la general)" : "") : "–";
     if (!semana) {
       $("j-grupos").innerHTML = '<div class="panel muted">Aún no hay puntos. La primera jornada que cuenta es la ' + cfg.semanaInicio + ".</div>";
       return;
@@ -70,7 +77,7 @@
     var b = e.target.closest("button[data-s]");
     if (!b) return;
     semana = Number(b.dataset.s); abiertos = {};
-    pintarSemanas(L.semanasJugadas(ctx)); pintarJornada();
+    pintarSemanas(); pintarJornada();
   });
   $("j-grupos").addEventListener("click", function (e) {
     var b = e.target.closest("button.ver");
@@ -83,7 +90,7 @@
     ctx = c;
     Layout.avisoEjemplo();
     var jugadas = L.semanasJugadas(ctx);
-    semana = jugadas[jugadas.length - 1] || null;
-    pintarSemanas(jugadas); pintarJornada(); pintarClasificacion(jugadas);
+    semana = jugadas[jugadas.length - 1] || (cfg.semanaPrueba && conPuntos(cfg.semanaPrueba) ? cfg.semanaPrueba : null);
+    pintarSemanas(); pintarJornada(); pintarClasificacion(jugadas);
   }).catch(Layout.errorCarga);
 })();

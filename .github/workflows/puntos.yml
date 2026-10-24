@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       semanas:
-        description: "Semanas a calcular (p. ej. 9-17). Vacío = las ya terminadas de la 9 a la 17"
+        description: "Semanas a calcular (p. ej. 9-17). Vacío = las ya terminadas de la 8 (prueba) a la 17"
         required: false
         default: ""
       guardar:
