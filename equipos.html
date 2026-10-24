@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Equipos · Liga ADP</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="equipos">
+<!--BODY-->
+<header id="cabecera"></header>
+<main class="wrap">
+  <div class="notice" id="aviso-datos" hidden></div>
+  <section class="panel stack">
+    <div class="eyebrow">Chafardeo</div>
+    <h2>Todos los equipos</h2>
+    <div class="filtros">
+      <div class="selector" id="f-grupo" role="group" aria-label="Grupo"></div>
+      <input type="search" id="f-busca" placeholder="Busca un equipo, manager o jugador…" aria-label="Buscar">
+    </div>
+    <p class="muted" id="f-resumen" style="margin:0"></p>
+  </section>
+  <div class="rejilla" id="rejilla"></div>
+  <section class="panel stack">
+    <h3>Jugadores más elegidos</h3>
+    <div class="table-scroll"><table class="tabla" id="populares"></table></div>
+  </section>
+</main>
+<footer id="pie"></footer>
+<!--/BODY-->
+<script src="js/config.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/draft.js"></script>
+<script src="js/adp.js"></script>
+<script src="js/liga.js"></script>
+<script src="js/equipos.js"></script>
+</body>
+</html>

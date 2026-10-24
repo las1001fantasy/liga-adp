@@ -1,0 +1,55 @@
+{
+  "nota": "Reglas que usa tools/actualizar_puntos.py. Los campos son los de las estadísticas de Sleeper. Copia de la puntuación de Fleaflicker (liga 346180) a 24/10/2026; pendiente de afinar con la puntuación detallada.",
+  "porCampo": {
+    "pass_yd": 0.05,
+    "pass_td": 4,
+    "pass_int": -2,
+    "pass_2pt": 2,
+    "rush_yd": 0.1,
+    "rush_td": 6,
+    "rush_2pt": 2,
+    "rec": 1,
+    "rec_yd": 0.1,
+    "rec_td": 6,
+    "rec_2pt": 2,
+    "kr_td": 6,
+    "pr_td": 6,
+    "st_td": 6,
+    "fum": -1,
+    "fum_lost": -1,
+    "fgm": 3,
+    "fgm_40_49": 1,
+    "fgm_50p": 3,
+    "xpm": 1
+  },
+  "porPosicion": {
+    "TE": { "rec": 2 }
+  },
+  "umbrales": [
+    { "campo": "pass_yd", "min": 300, "pts": 1 },
+    { "campo": "rush_yd", "min": 150, "pts": 1 },
+    { "campo": "rec_yd", "min": 150, "pts": 1 },
+    { "campo": "pass_cmp", "min": 25, "pts": 2 },
+    { "campo": "rush_att", "min": 30, "pts": 2 },
+    { "campo": "rec", "min": 9, "pts": 2 }
+  ],
+  "tdLargos": {
+    "tipos": ["rush", "rec"],
+    "de40": 2,
+    "de80": 4
+  },
+  "dst": {
+    "porCampo": {
+      "sack": 2,
+      "int": 2,
+      "ff": 2,
+      "fum_rec": 1,
+      "safe": 4,
+      "def_td": 6,
+      "def_st_td": 6
+    },
+    "puntosPermitidos": [
+      { "max": 0, "pts": 10 }
+    ]
+  }
+}

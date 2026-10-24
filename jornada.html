@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jornada y clasificación · Liga ADP</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="jornada">
+<!--BODY-->
+<header id="cabecera"></header>
+<main class="wrap">
+  <div class="notice" id="aviso-datos" hidden></div>
+  <section class="panel stack">
+    <div class="eyebrow">Puntuación por jornada, sin enfrentamientos</div>
+    <h2>Jornada <span id="j-num"></span></h2>
+    <div class="selector" id="j-semanas" role="group" aria-label="Semana"></div>
+    <p class="muted" style="margin:0;font-size:13px">Cada semana puntúa automáticamente la mejor alineación posible de cada equipo: QB, RB, 2 WR, TE, FLEX, K y DST. Pulsa un equipo para ver quién puntuó.</p>
+  </section>
+  <section class="dos" id="j-grupos"></section>
+  <section class="panel stack">
+    <h2>Clasificación general</h2>
+    <p class="muted" style="margin:0;font-size:13px">Suma de las jornadas <span id="c-rango"></span>. Desempate: mejor jornada individual.</p>
+  </section>
+  <section class="stack" id="c-grupos"></section>
+</main>
+<footer id="pie"></footer>
+<!--/BODY-->
+<script src="js/config.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/draft.js"></script>
+<script src="js/adp.js"></script>
+<script src="js/liga.js"></script>
+<script src="js/jornada.js"></script>
+</body>
+</html>

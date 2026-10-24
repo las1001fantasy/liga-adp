@@ -1,0 +1,27 @@
+# Actualiza data/puntos.csv cada martes a las 13:00 de Barcelona (12:00 UTC en horario de invierno,
+# que es el que rige de la semana 9 a la 17). También se puede lanzar a mano desde la pestaña Actions.
+name: Actualizar puntos
+
+on:
+  schedule:
+    - cron: "0 12 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  puntos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 tools/actualizar_puntos.py
+      - name: Guardar cambios
+        run: |
+          git config user.name "liga-adp-bot"
+          git config user.email "liga-adp-bot@users.noreply.github.com"
+          git add data/puntos.csv data/puntos_log.txt
+          git diff --cached --quiet || (git commit -m "Puntos actualizados $(date -u +%F)" && git push)

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crear equipo · Liga ADP</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="equipo">
+<!--BODY-->
+<header id="cabecera"></header>
+
+<main class="wrap">
+  <div class="notice" id="aviso-datos" hidden></div>
+
+  <!-- Paso 1: inscripción -->
+  <section class="step1" id="paso1">
+    <form class="panel stack" id="form-inscripcion" novalidate>
+      <div class="eyebrow">Paso 1 de 2</div>
+      <h2>Elige tu equipo</h2>
+      <div class="field" id="campo-manager" hidden>
+        <label for="in-manager">Tu equipo</label>
+        <select id="in-manager" class="select"></select>
+        <div class="muted" id="manager-info" style="font-size:14px"></div>
+        <div class="err" id="err-manager"></div>
+      </div>
+      <div class="field" id="campo-equipo">
+        <label for="in-equipo">Nombre del equipo</label>
+        <input type="text" id="in-equipo" maxlength="40" autocomplete="off" placeholder="Long Snapper">
+        <div class="err" id="err-equipo"></div>
+      </div>
+      <div class="field" id="campo-telegram">
+        <label for="in-telegram">Usuario de Telegram</label>
+        <input type="text" id="in-telegram" maxlength="33" autocomplete="off" placeholder="@bocamolls">
+        <div class="err" id="err-telegram"></div>
+      </div>
+      <div class="field" id="campo-grupo">
+        <span id="lbl-grupo" style="font-weight:600;font-size:14px">Grupo</span>
+        <div class="slots grupos" id="grupos" role="group" aria-labelledby="lbl-grupo"></div>
+        <div class="err" id="err-grupo"></div>
+      </div>
+      <div class="field" id="campo-clave" hidden>
+        <label for="in-clave">Contraseña</label>
+        <div class="row">
+          <input type="password" id="in-clave" maxlength="40" autocomplete="current-password" style="flex:1;min-width:0">
+          <button class="btn" type="button" id="btn-entrar">Entrar</button>
+        </div>
+        <div class="muted" style="font-size:13px">Te la pasa el comisionado por Telegram. Así nadie más puede tocar tu equipo.</div>
+        <div class="err" id="err-clave"></div>
+      </div>
+      <div class="field" id="campo-slot">
+        <span id="lbl-slot" style="font-weight:600;font-size:14px">Pick de 1ª ronda</span>
+        <div class="slots" id="slots" role="group" aria-labelledby="lbl-slot"></div>
+        <div class="err" id="err-slot"></div>
+      </div>
+      <div class="row">
+        <button class="btn" type="submit" id="btn-empezar">Ver mis 15 rondas</button>
+        <button class="btn ghost" type="button" id="btn-ejemplo" hidden>Rellenar ejemplo</button>
+      </div>
+    </form>
+
+    <div class="panel stack">
+      <div class="eyebrow">Orden snake</div>
+      <h3 id="board-titulo">Así quedan tus picks</h3>
+      <p class="muted" style="margin:0">Cada columna es un equipo: el que sale 1.12 repite justo debajo con el 2.01, y el 1.01 cierra la ronda 2 con el 2.12 y abre la 3 con el 3.01. Elige tu pick para ver tu columna marcada. Cada pick de 1ª ronda lo pueden coger como mucho dos managers: los que ya están llenos aparecen bloqueados.</p>
+      <div class="board-scroll"><table class="board" id="board"></table></div>
+    </div>
+  </section>
+
+  <!-- Paso 2: draft -->
+  <section class="step2" id="paso2" hidden>
+    <div class="panel stack">
+      <div class="team-head">
+        <div>
+          <div class="eyebrow">Paso 2 de 2 · Tu draft</div>
+          <h2 id="t-equipo"></h2>
+          <div class="muted" id="t-meta"></div>
+        </div>
+        <div class="row">
+          <label class="row muted" style="font-size:13px;gap:6px"><input type="checkbox" id="chk-elegibles" checked> Sugerir solo jugadores elegibles</label>
+          <span class="chip idle" id="estado-guardado" hidden></span>
+          <button class="btn ghost" type="button" id="btn-editar" hidden>Cambiar datos</button>
+          <button class="btn ghost" type="button" id="btn-salir" hidden>Salir</button>
+        </div>
+      </div>
+      <p class="muted" style="margin:0">Regla: en cada ronda solo vale un jugador cuyo ADP sea igual o mayor que el número de ese pick. Escribe o busca el nombre, o filtra por posición. La columna Bye solo marca los que caen entre las semanas 9 y 14.</p>
+      <div class="table-scroll">
+        <table class="picks">
+          <thead><tr><th>Ronda</th><th>Pick</th><th>Jugador</th><th>Pos</th><th>NFL</th><th>ADP</th><th>Bye</th><th>Estado</th></tr></thead>
+          <tbody id="tbody-picks"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <aside class="aside">
+      <div class="panel stack">
+        <h3>Composición</h3>
+        <div class="counts" id="conteo"></div>
+      </div>
+      <div class="panel stack">
+        <h3>Alineación puntuable</h3>
+        <p class="muted" style="margin:0;font-size:13px">Cada semana puntúan los mejores. Hasta tener puntos reales, se muestra por mejor ADP.</p>
+        <div class="lineup" id="alineacion"></div>
+        <div class="bench-head"><h3>Banquillo</h3><span class="chip idle num" id="banquillo-n"></span></div>
+        <p class="muted" style="margin:0;font-size:13px">Las 7 rondas restantes. Entran solas si un titular rinde menos o tiene bye.</p>
+        <div class="lineup bench" id="banquillo"></div>
+      </div>
+      <div class="panel stack">
+        <h3>Byes · semanas <span id="rango-semanas"></span></h3>
+        <div class="byes" id="byes"></div>
+      </div>
+      <div class="panel stack">
+        <h3>Comprobaciones</h3>
+        <ul class="checks" id="checks"></ul>
+        <div class="row">
+          <button class="btn" type="button" id="btn-copiar" disabled>Copiar para Telegram</button>
+        </div>
+        <textarea class="export" id="export" readonly hidden aria-label="Equipo exportado"></textarea>
+        <button class="btn ghost" type="button" id="btn-reset">Borrar mi draft</button>
+        <div class="row" id="confirm-reset" hidden>
+          <span class="muted" style="font-size:13px">¿Seguro? Se borran las 15 rondas.</span>
+          <button class="btn" type="button" id="btn-reset-si">Sí, borrar</button>
+          <button class="btn ghost" type="button" id="btn-reset-no">Cancelar</button>
+        </div>
+      </div>
+      <div class="panel stack">
+        <details>
+          <summary>Puntuación (Fleaflicker 346180)</summary>
+          <div class="scoring" id="scoring" style="margin-top:10px"></div>
+        </details>
+      </div>
+    </aside>
+  </section>
+</main>
+<footer id="pie"></footer>
+<div class="sugerencias" id="sugerencias" role="listbox" aria-label="Jugadores" hidden></div>
+<div class="toast" id="toast" hidden role="status"></div>
+<!--/BODY-->
+<script src="js/config.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/draft.js"></script>
+<script src="js/adp.js"></script>
+<script src="js/liga.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

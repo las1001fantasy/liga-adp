@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Liga ADP</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="inicio">
+<!--BODY-->
+<header id="cabecera"></header>
+<main class="wrap">
+  <div class="notice" id="aviso-datos" hidden></div>
+  <section class="panel hero">
+    <img src="img/logo-liga-adp.png" alt="" width="150" height="148">
+    <div>
+      <div class="eyebrow">Temporada <span id="h-temporada"></span> · Las 1001</div>
+      <h1>Liga ADP · Peras y Manzanas Bowl</h1>
+      <p id="h-texto"></p>
+    </div>
+  </section>
+  <div class="accesos">
+    <a class="acceso principal" href="equipo.html"><h2>Crear mi equipo</h2><p>Elige tu equipo y tu pick de 1ª ronda, y rellena tus 15 rondas con la regla del ADP.</p></a>
+    <a class="acceso" href="equipos.html"><h2>Equipos</h2><p>Los rosters de todos los participantes, para chafardear.</p></a>
+    <a class="acceso" href="jornada.html"><h2>Jornada y clasificación</h2><p>Puntos de cada jornada y clasificación general.</p></a>
+    <a class="acceso" href="playoffs.html"><h2>Playoffs</h2><p>El mejor de cada jornada pasa directo, más los dos mejores de la general. Cuartos, semis y final.</p></a>
+  </div>
+  <section class="panel stack" id="pendientes" hidden></section>
+  <section class="dos" id="resumen"></section>
+  <section class="panel stack">
+    <h3>Cómo funciona</h3>
+    <ul class="muted" style="margin:0;padding-left:18px;display:grid;gap:4px" id="h-reglas"></ul>
+  </section>
+</main>
+<footer id="pie"></footer>
+<!--/BODY-->
+<script src="js/config.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/draft.js"></script>
+<script src="js/adp.js"></script>
+<script src="js/liga.js"></script>
+<script src="js/inicio.js"></script>
+</body>
+</html>
