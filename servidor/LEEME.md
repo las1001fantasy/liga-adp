@@ -18,7 +18,7 @@ Guarda los equipos con contraseña y no enseña ningún roster hasta el cierre
 5. Pon esa URL en `js/config.js`, en `servidor: "…/exec"`, y sube el cambio.
 6. Manda a cada manager su contraseña por privado en Telegram.
 
-`prepararHoja` lee la lista de managers y el ADP de la web publicada (`CONFIG.web` al principio del
+`prepararHoja` lee la lista de managers y el ADP de la web publicada (`CONFIG.web`, https://adp.las1001fantasy.com/, al principio del
 script). Si la web está en otra dirección, cámbiala ahí antes de ejecutarlo.
 
 ## Día a día

@@ -7,7 +7,7 @@
 var CONFIG = {
   cierre: new Date("2026-11-04T22:00:00+01:00"),
   // Web publicada (GitHub Pages o similar): de aquí se leen el ADP y la lista de managers
-  web: "https://las1001fantasy.github.io/liga-adp/",
+  web: "https://adp.las1001fantasy.com/",
   equipos: 12,       // picks por ronda
   rondas: 15,
   maxPorSlot: 2,     // managers que pueden compartir pick de 1ª ronda
