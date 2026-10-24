@@ -7,8 +7,7 @@ def get(q):
         return r.status, r.read().decode("utf-8", "replace")
 def texto(h): return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "|", h)))
 P = "/nfl/leagues/346180/players"
-for q in [P + "?statType=2&week=6", P + "?week=6&statType=1", P + "?statType=2&proTeam=DET", P + "?statType=2&position=16", P + "?statType=2&position=256",
-          P + "/jahmyr-gibbs-17612", P + "/17612", "/nfl/players/17612", P + "/houston-texans-2340"]:
+for q in [P + "/x-17612", P + "/jamarr-chase-17605", P + "/ja-marr-chase-17605", P + "/x-2340"]:
     try:
         st, h = get(q)
     except Exception as e:
