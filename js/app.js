@@ -370,8 +370,11 @@
       tr.querySelector(".c-adp").textContent = j ? D.formatoADP(j.adp, cfg.equipos) : "";
       tr.querySelector(".c-adp").title = j ? "ADP " + (j.adpExacto != null ? j.adpExacto : j.adp) + (j.ligas ? " · en " + j.ligas + " ligas" : "") : "";
       var cb = tr.querySelector(".c-bye");
-      cb.textContent = !j || !j.bye ? "" : byeEnLiga(j) ? j.bye : "–";
-      cb.title = j && j.bye && !byeEnLiga(j) ? "Bye en la semana " + j.bye + ", antes de que empiece la liga" : "";
+      // los byes de antes de la semana de inicio ya no cuentan: se marcan como hechos
+      var hecho = !!(j && j.bye && j.bye < cfg.semanaInicio);
+      cb.textContent = !j || !j.bye ? "" : hecho ? "Hecho" : j.bye;
+      cb.classList.toggle("fuera", hecho);
+      cb.title = j && j.bye ? (byeEnLiga(j) ? "Descansa en la semana " + j.bye + ": ese día no puntúa" : "Descansa en la semana " + j.bye + ", antes de que empiece la liga: no le afecta") : "";
       tr.querySelector(".motivo").textContent = p.nombre && !p.estado.ok && !escribiendo ? p.estado.motivo : "";
       tr.querySelector(".c-st").innerHTML = !p.nombre || escribiendo ? '<span class="chip idle">Vacío</span>'
         : (p.estado.ok ? '<span class="chip ok">OK</span>' : '<span class="chip bad">Error</span>') +

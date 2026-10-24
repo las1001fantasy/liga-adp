@@ -278,3 +278,4 @@ table.tabla { width: 100%; border-collapse: collapse; font-size: 14px; }
 .sugerencias .sug .chip { margin-left: auto; }
 .sugerencias .sug:hover, .sugerencias .sug.on { background: var(--surface-2); }
 .sugerencias .sug.vacio { color: var(--muted); cursor: default; }
+.picks .c-bye.fuera { color: var(--muted); font-family: var(--font-body); font-size: 12px; }
