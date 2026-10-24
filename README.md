@@ -57,6 +57,11 @@ jugador,equipo_nfl,posicion,adp,bye
   pero no bloquea el pick. Cargada de Fleaflicker (liga 346180) el 24/10/2026, semana 7; hay que refrescarla a mano.
 - También vale un JSON con un array de objetos con esas mismas claves.
 
+## Publicar cambios
+
+GitHub Pages guarda los archivos en caché unos 10 minutos. Al cambiar JS o CSS, sube el número `?v=` de las
+etiquetas `<script>` y `<link>` de los `.html` para que los navegadores bajen la versión nueva.
+
 ## Reglas implementadas
 
 - Snake de 12 equipos y 15 rondas: pick 1.08 → 2.05 → 3.08 → 4.05…
