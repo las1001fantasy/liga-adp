@@ -80,13 +80,14 @@ etiquetas `<script>` y `<link>` de los `.html` para que los navegadores bajen la
    Los rosters no se ven hasta el cierre; la portada enseña quién falta.
 2. Sin servidor (`servidor: ""`), la web lee los equipos de `data/equipos.json`.
 3. Los puntos de `data/puntos.csv` (`semana,jugador,puntos`) los genera `tools/actualizar_puntos.py`:
-   baja las stats de Sleeper, aplica `data/puntuacion.json` (reglas de Fleaflicker) y recalcula todas
-   las semanas terminadas de la 9 a la 17. `.github/workflows/puntos.yml` lo lanza cada martes a las 13:00
+   lee la ficha de cada jugador en la liga de referencia de Fleaflicker (346180), que trae sus puntos
+   con la puntuación exacta de la liga, usando el `player_id` del ADP. Si una ficha falla, calcula ese
+   jugador con las stats de Sleeper y `data/puntuacion.json`. Recalcula todas las semanas terminadas
+   de la 8 (jornada de prueba, no cuenta) a la 17. `.github/workflows/puntos.yml` lo lanza cada martes a las 13:00
    de Barcelona si la web está en un repositorio de GitHub. `data/puntos_log.txt` lista los jugadores
    del ADP que no se han encontrado en Sleeper.
    La web calcula sola la mejor alineación de cada equipo, la jornada, la general y los playoffs.
-   Limitaciones de Sleeper: no da 2 pt, safeties ni TD de retorno de forma fiable, y del TD de 80+ solo
-   sabe el más largo; esos casos se pueden corregir a mano en el CSV.
+   El log compara Fleaflicker con nuestro cálculo de Sleeper, para detectar si cambia la puntuación.
 
 ## Pendiente (necesita decisión o backend)
 
