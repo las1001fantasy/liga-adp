@@ -10,7 +10,7 @@ var CONFIG = {
   web: "https://adp.las1001fantasy.com/",
   equipos: 12,       // picks por ronda
   rondas: 15,
-  maxPorSlot: 2,     // managers que pueden compartir pick de 1ª ronda
+  maxPorSlot: 0,     // managers que pueden compartir pick de 1ª ronda (0 = sin límite)
   minimos: { QB: 1, RB: 1, WR: 2, TE: 1, K: 1, DST: 1 },
   minimoFlex: 5,     // RB + WR + TE
   intentos: 10       // contraseñas fallidas por equipo cada 10 minutos
@@ -144,7 +144,7 @@ function guardarEquipo(m, p) {
   try {
     var filas = leerEquipos();
     var mismos = filas.filter(function (f) { return f.slot === slot && f.equipo.toLowerCase() !== m.equipo.toLowerCase(); });
-    if (mismos.length >= CONFIG.maxPorSlot) {
+    if (CONFIG.maxPorSlot && mismos.length >= CONFIG.maxPorSlot) {
       return { ok: false, error: "El pick 1." + ("0" + slot).slice(-2) + " ya lo tienen " + mismos.map(function (f) { return f.equipo; }).join(" y ") + "." };
     }
     var revision = revisarRoster(leerADP(), picks, slot);

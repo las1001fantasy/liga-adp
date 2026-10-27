@@ -4,7 +4,7 @@
 1. **ADP igual al pick**: ¿un jugador con ADP exactamente 8 vale en el pick 1.08? Ahora sí (≥).
 2. **Formato del ADP**: ¿el archivo vendrá en pick global (14.3) o en ronda.pick (2.2)? Las dos opciones están soportadas.
 3. **Duplicados entre managers**: ¿dos equipos pueden tener el mismo jugador? Ahora sí se permite.
-4. **Pick de 1ª ronda**: liga única de 24 con draft de 12, así que cada pick lo pueden coger 2 managers (`maxPorSlot`). Confirmar, y si es por orden de llegada o sorteo.
+4. **Pick de 1ª ronda**: resuelto (27/10). Sin límite: cualquier pick lo pueden coger todos, y los jugadores se repiten entre equipos (`maxPorSlot: 0`).
 5. **ADP congelado**: el ADP que se use debe ser una foto fija con fecha, publicada antes de abrir inscripciones; si cambia a mitad, los equipos ya enviados podrían quedar inválidos.
 6. **Mínimos y máximos por posición**: propuestos 1 QB, 1 RB, 2 WR, 1 TE, 1 K, 1 DST + 5 RB/WR/TE; máximos 3 QB, 4 TE, 2 K, 2 DST.
 7. **Playoffs**: cuartos J15, semis J16, final J17 (por confirmar). Cruces 1-8, 4-5, 2-7, 3-6 según la general; gana quien más puntúa esa semana, empate para el mejor cabeza de serie.

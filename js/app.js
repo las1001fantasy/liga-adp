@@ -108,13 +108,13 @@
   // Un pick está lleno cuando ya lo tienen maxPorSlot managers del mismo grupo.
   function slotsOcupados() {
     var o = {}, cuenta = {};
-    if (cfg.datosEsEjemplo) return o; // los equipos de ejemplo no bloquean picks reales
+    if (cfg.datosEsEjemplo || !cfg.maxPorSlot) return o; // los equipos de ejemplo no bloquean picks reales
     var yo = normalizarTelegram($("in-telegram").value).toLowerCase();
     inscritos.forEach(function (e) {
       if ((e.grupo || cfg.grupos[0]) !== estado.grupo || e.telegram.toLowerCase() === yo || !e.slot) return;
       (cuenta[e.slot] = cuenta[e.slot] || []).push(e.equipo);
     });
-    Object.keys(cuenta).forEach(function (s) { if (cuenta[s].length >= (cfg.maxPorSlot || 1)) o[s] = cuenta[s].join(" y "); });
+    Object.keys(cuenta).forEach(function (s) { if (cuenta[s].length >= cfg.maxPorSlot) o[s] = cuenta[s].join(" y "); });
     return o;
   }
 

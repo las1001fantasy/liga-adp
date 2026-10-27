@@ -32,7 +32,7 @@ script). Si la web está en otra dirección, cámbiala ahí antes de ejecutarlo.
 ## Qué comprueba el servidor
 
 - La contraseña (10 intentos fallidos bloquean ese equipo 10 minutos).
-- Que no haya más de 2 managers en el mismo pick de 1ª ronda.
+- Si `maxPorSlot` es mayor que 0, que no haya más managers que ese número en el mismo pick de 1ª ronda (ahora es 0: sin límite).
 - Que no se guarde nada después del cierre.
 - La regla del ADP, los repetidos y los mínimos por posición. Un borrador incompleto se guarda,
   pero tras el cierre solo cuentan los picks válidos.

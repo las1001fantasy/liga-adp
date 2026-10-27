@@ -5,12 +5,13 @@
 window.LIGA_CONFIG = {
   nombre: "Liga ADP · Peras y Manzanas",
   temporada: 2026,
-  // 2026: una sola liga de 24 plazas (23 equipos de 2025 + 1 por confirmar).
-  // El draft sigue siendo de 12 picks por ronda, así que cada pick de 1ª ronda
-  // lo pueden coger como mucho 2 managers. POR CONFIRMAR
+  // 2026: una sola liga de 24 plazas (23 equipos de 2025 + Nauer Ravens).
+  // Cada manager hace su propio draft: cualquier pick de 1ª ronda lo pueden coger
+  // todos los que quieran y los jugadores se repiten entre equipos.
+  // maxPorSlot 0 = sin límite.
   grupos: ["Liga ADP"],
   participantes: 24,
-  maxPorSlot: 2,
+  maxPorSlot: 0,
   equipos: 12,
   rondas: 15,
 

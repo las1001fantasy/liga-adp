@@ -11,7 +11,7 @@
     " jugadores eligiendo por ADP y puntúa de la semana " + cfg.semanaInicio + " a la " + cfg.semanaFin +
     " de la NFL. Inscripción abierta hasta el " + Layout.fechaCierre() + ".";
   $("h-reglas").innerHTML = [
-    "Eliges tu equipo y tu pick de 1ª ronda (del 1 al 12; cada pick lo pueden coger " + cfg.maxPorSlot + " managers). El orden es snake: si sales 1.08, luego vas 2.05, 3.08, 4.05…",
+    "Eliges tu equipo y tu pick de 1ª ronda (del 1 al 12" + (cfg.maxPorSlot ? "; cada pick lo pueden coger " + cfg.maxPorSlot + " managers" : "; varios managers pueden coger el mismo") + "). El orden es snake: si sales 1.08, luego vas 2.05, 3.08, 4.05…",
     "En cada ronda solo puedes elegir jugadores con ADP igual o mayor que tu pick.",
     "Cada semana puntúa sola tu mejor alineación: QB, RB, 2 WR, TE, FLEX (RB/WR/TE), K y DST. El TE cobra 2 puntos por recepción.",
     "No hay enfrentamientos: cuenta la puntuación. El mejor de cada jornada (" + cfg.semanaInicio + " a " + cfg.semanaFin + ") pasa directo a playoffs; si ya estaba dentro, pasa el siguiente de esa jornada.",
