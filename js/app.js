@@ -264,7 +264,6 @@
   // ---------- buscador de jugadores ----------
   // Lista propia en vez de <datalist>: Firefox y los móviles enseñan los datalist cada uno a su manera
   // (Firefox no muestra el nombre), así se ve igual en todos.
-  var MAX_SUGERENCIAS = 40;
   var sug = { ronda: null, lista: [], activo: -1 };
 
   function sinAcentos(t) { return t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); }
@@ -275,8 +274,8 @@
     var q = sinAcentos(input.value.trim());
     var exacto = porNombre[input.value.trim().toLowerCase()];
     var todos = candidatosRonda(r);
-    // con un jugador ya elegido se enseña la lista entera para poder cambiarlo
-    sug.lista = (q && !exacto ? todos.filter(function (j) { return sinAcentos(j.nombre + " " + j.equipo).indexOf(q) >= 0; }) : todos).slice(0, MAX_SUGERENCIAS);
+    // con un jugador ya elegido se enseña la lista entera para poder cambiarlo; sin tope, para que se vean también los de ADP 16.1
+    sug.lista = q && !exacto ? todos.filter(function (j) { return sinAcentos(j.nombre + " " + j.equipo).indexOf(q) >= 0; }) : todos;
     sug.ronda = r; sug.activo = -1;
     var caja = $("sugerencias");
     caja.innerHTML = sug.lista.length ? sug.lista.map(function (j, i) {
