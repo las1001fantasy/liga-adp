@@ -1,10 +1,15 @@
 # Actualiza data/puntos.csv cada martes a las 13:00 de Barcelona (12:00 UTC en horario de invierno,
 # que es el que rige de la semana 9 a la 17). También se puede lanzar a mano desde la pestaña Actions.
+# GitHub retrasa o se salta a veces los cron (el 3/11 corrió 7 h tarde y el 10/11 no corrió),
+# así que hay repeticiones de respaldo: recalcular es inofensivo, solo se guarda si algo cambia.
 name: Actualizar puntos
 
 on:
   schedule:
     - cron: "0 12 * * 2"
+    - cron: "17 15 * * 2"
+    - cron: "43 19 * * 2"
+    - cron: "23 7 * * 3"
   workflow_dispatch:
     inputs:
       semanas:
